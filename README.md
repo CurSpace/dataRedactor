@@ -134,6 +134,7 @@ __BUGS__
 
 4. Phones of the format +61-2-9229-2336 are not matched as they are not common north american formats.
 
+5. Redacting concepts interferes with the other options to redact because they have been already redacted, this affects the stats and not all redactions are collected in the stats file.
 
    
 
