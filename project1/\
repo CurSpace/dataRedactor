@@ -1,0 +1,132 @@
+import argparse
+import os
+import re 
+import spacy
+from spacy import displacy
+import nltk
+import glob
+
+# named entity recognition using spacy
+NER = spacy.load("en_core_web_sm")
+
+#nltk.download('words')
+#nltk.download('wordnet')
+#nltk.download('punkt')
+#nltk.download('maxent_ne_chunker')
+#nltk.download('averaged_perceptron_tagger')
+
+
+#from nltk.corpus import stopwords
+#from nltk.corpus import wordnetfrom nltk.tokenize import word_tokenize,sent_tokenize
+#from nltk import ne_chunk
+
+
+# the user can input multiple files
+def input_files(files_in):
+    if len(files_in) == 0:
+        raise Exception('No files given\n')
+    files_together = []
+    # make nested list into list
+    files_in = nltk.flatten(files_in)
+    files_together = [open(each_file,"r").read() for text_files in files_in for each_file in glob.glob(text_files) ]
+   # for text_files in files_in:
+    #        lst_fls = glob.glob(text_files)
+     #       all_data = [for each_file in lst_fls open(each_file,"") ]
+      #      for each_file in lst_fls:
+       #         data = open(each_file,"r").read()
+        #        all_data.append(data)
+                
+    #print(files_together)
+    # files_together is a list
+    return files_together
+
+def redact_all_names(data):
+    names =  []
+    redacted_names = []
+    files_together = NER(data)
+
+    # tokenize the text
+   # words = [token for token in files_together]
+   # words = NER(words)
+   # redacted_names = [words.text for entity in words.ents if words.label_ == "PERSON" ] 
+        
+            #redaction logic
+
+    print(files_together)
+    return files_together
+
+#    [nlp(data) for data in datas for entity in doc.ents if entity.label_ in ["PERSON"."GPE"]]
+    
+#def redact_all_dates(text_input):
+#    pass
+
+#def redact_all_phonenmbers(text_input):
+#    pass
+
+
+#def redact_all_genders(text_input):
+#    pass
+
+#def redact_all_concepts(text_input):
+#    pass
+
+def redacted_output(files_in,data,redacted_file):
+    if len(files_in) == 0:
+        raise Exception('No files given\n')
+    files_together = []
+    # make nested list into list
+    files_in = nltk.flatten(files_in)
+    
+    # replace imput file extension with .redacted
+    
+    for i in range(len(files_in)):
+        files = glob.glob(files_in[i])
+        
+        change_extension = [ files[j].replace(".txt",".redactor")for j in range(len(files)) if '.txt' in files[j]]
+        print(change_extension)   
+
+     
+#    pass
+
+
+#def write_stats():
+#    pass
+
+
+if __name__ == "__main__":
+    arguments = argparse.ArgumentParser()
+    arguments.add_argument("--input",type = str, required = True, help = "path to input files", nargs = "*", action = "append" )
+    arguments.add_argument("--names", required = False, help = "option to redate names", action = "store_true")
+    arguments.add_argument("--genders", required = False, help = "option to redact genders", action = "store_true")
+    arguments.add_argument("--dates", required = False, help = "option to redact dates", action = "store_true")
+    arguments.add_argument("--phones", required = False, help = "option to redact phone numbers", action = "store_true")
+
+    # can be repeated multiple times
+    arguments.add_argument("--concept", type = str, required = False, help = "option to redact concepts", nargs= "*", action = "append")
+    arguments.add_argument("--stats", type = str, required = False, help = "option to to print stats for redactions")
+    arguments.add_argument("--output", type = str, required = True, help = "path  to outputfile")
+    args = arguments.parse_args()
+
+    data  = input_files(args.input)
+
+    if args.output:
+        redacted_output(args.input, data, args.output)
+  
+    if args.names:
+        data = redact_all_names(str(data))
+    if args.dates:
+        data = redact_all_dates(data)
+    if args.phones:
+        data = redact_all_phonenumbers(data)
+    if args.genders:
+        data = redact_all_genders(data)
+    if args.concept:
+        data = redact_all_concepts(data, args.concept)  
+    
+    if args.output:
+        redacted_output(args.input, data, args.output)
+   
+    if args.stats:
+        redactor.write_stats()
+
+
