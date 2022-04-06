@@ -134,8 +134,7 @@ def redact_all_addressess(data):
 def redact_all_concepts(data,concept):
      data = list(nltk.flatten(data))
      type_of = "Concepts:"
-     synonyms = []
-     synonyms_list = []
+     list_of_syns = []
      concept_list = []
      concept_list =str(nltk.flatten( nltk.flatten(concept_list.append(concept))))
      count = 0
@@ -144,17 +143,17 @@ def redact_all_concepts(data,concept):
              synonyms.append(syn.lemma_names())
              for lemma in syn.hyponyms():
                  synm = lemma.lemma_names()
-                 synonyms_list.append(synm)
+                 list_of_syns.append(synm)
 
-     all_syns = list(nltk.flatten(synonyms_list))
-     for i in concept:
-         all_syns.append(i)
+     synonyms = list(nltk.flatten(list_of_syns))
+     for c in concept:
+         synonyms.append(c)
         
      redacted_data = []
      for dat in data:
          doc = nlp(dat)
          for sents in doc.sents:
-             for concept in all_syns:
+             for concept in synonyms:
                  if concept in str(sents):
                         
                      dat = dat.replace(str(sents),"\n"+ u"\u2588"*len(str(sents)))
