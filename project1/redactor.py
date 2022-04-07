@@ -7,7 +7,9 @@ import nltk
 import glob
 from commonregex import CommonRegex
 # named entity recognition using spacy
-nlp = spacy.load("en_core_web_sm")
+import en_core_web_sm
+nlp = en_core_web_sm.load()
+#nlp = spacy.load("en_core_web_sm")
 
 
 nltk.download('words')
@@ -17,10 +19,10 @@ nltk.download('maxent_ne_chunker')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('all')
 
-#from nltk.corpus import stopwords
+
 from nltk.corpus import wordnet 
 from nltk.tokenize import word_tokenize,sent_tokenize
-#from nltk import ne_chunk
+
 
 # the user can input multiple files
 def input_files(files_in):
