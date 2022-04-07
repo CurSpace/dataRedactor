@@ -7,8 +7,8 @@ import nltk
 import glob
 from commonregex import CommonRegex
 # named entity recognition using spacy
-import en_core_web_sm
-nlp = en_core_web_sm.load()
+import en_core_web_md
+nlp = en_core_web_md.load()
 #nlp = spacy.load("en_core_web_sm")
 
 
