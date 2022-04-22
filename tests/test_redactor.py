@@ -1,4 +1,4 @@
-from project1 import redactor
+import redactor
 import pytest
 import nltk
 path = './tests/5.txt'
