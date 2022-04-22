@@ -1,10 +1,13 @@
-Improved genders by using a better gneder list and ingnoring the characters if they are a substring of a word using boundary condition.
+* Moderate amount of Features Found - Gender --- Improved genders by using a better gender list and ingnoring the characters if they are a substring of a word using boundary condition and included plurals and 's..
 
-Improved concept by using synonyms and hyponyms and blocking out the sentence.
+* Missing/No Features  Found- Concept --- Improved concept by using synonyms and hyponyms and blocking out the sentence.
 
-Improved address by using a better regex pattern.
+* Small amount of Features Found --- Addresses Improved address by using a better regex pattern.
 
-Fixed stats stderr, stdout.
+* Missing Stats --- Fixed stats stderr, stdout.
 
-Tests working from repo folder. Had to change from project1 import redactor to just import redactor.
+* Missing Test Functions --- Added tests
 
+* Errors Running Test --- Tests working from repo folder. Had to change from project1 import redactor to just import redactor.
+
+* was not preserving the format of the file in input. Fixed that.
