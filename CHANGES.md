@@ -1,3 +1,4 @@
+# Changes
 * Moderate amount of Features Found - Gender --- Improved genders by using a better gender list and ingnoring the characters if they are a substring of a word using boundary condition and included plurals and 's..
 
 * Missing/No Features  Found- Concept --- Improved concept by using synonyms and hyponyms and blocking out the sentence.
