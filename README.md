@@ -1,4 +1,4 @@
-# cs5293sp22-project1
+# Data Redactor
 ### Author : Pradipkumar Rajasekaran
 
 __Summary:__
