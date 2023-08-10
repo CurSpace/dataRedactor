@@ -1,5 +1,4 @@
 # Data Redactor
-### Author : Pradipkumar Rajasekaran
 
 __Summary:__
 
